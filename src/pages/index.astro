@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { MotionFadeIn, MotionStagger, MotionStaggerItem } from '../components/MotionFadeIn.tsx';
+import { CampusSimulator } from '../components/CampusSimulator.tsx';
 
 const authors = [
   { 
@@ -36,18 +37,18 @@ const authors = [
       <div class="max-w-3xl">
         <MotionFadeIn client:load direction="down">
           <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
-            <span class="px-3 py-1 bg-[#e8f0fe] text-[#1a73e8] text-[10px] md:text-xs font-bold rounded-full uppercase tracking-widest shadow-sm">Proyecto Final UNET</span>
-            <span class="text-[#5f6368] text-[10px] md:text-xs font-medium">Sistemas de Información I & Multimedia</span>
+            <span class="px-3 py-1 bg-[#e8f0fe] text-[#1a73e8] text-[10px] md:text-xs font-bold rounded-full uppercase tracking-widest shadow-sm">Ingeniería de Sistemas</span>
+            <span class="text-[#5f6368] text-[10px] md:text-xs font-medium">Portafolio — UNET Multimedia</span>
           </div>
           <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-[#202124] tracking-tight mb-8 leading-tight">
-            U-Locate: Navegando el Campus Inteligente
+            Bitácora de Ingeniería: <span class="text-[#1a73e8]">U-Locate</span>
           </h1>
           <p class="text-lg md:text-xl text-[#5f6368] mb-10 md:mb-12 leading-relaxed font-light max-w-2xl mx-auto md:mx-0">
-            Un blog dedicado a documentar el proceso de ingeniería, modelado y desarrollo rápido (RAD) de nuestra solución de localización para la comunidad de la Universidad Nacional Experimental del Táchira.
+            Soy <strong>Jose Garcia</strong>. En este blog documento el desarrollo de mi proyecto final para las materias de Multimedia y SI. Explora cómo estamos transformando el campus de la UNET con modelado estructurado y RAD.
           </p>
           <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-            <a href="/fase-1" class="btn-google btn-google-primary px-8 py-4 text-base">Explorar Fases</a>
-            <a href="#equipo" class="btn-google btn-google-outline px-8 py-4 text-base">Ver Colaboradores</a>
+            <a href="/fase-1" class="btn-google btn-google-primary px-8 py-4 text-base">Ver mi proceso</a>
+            <a href="#equipo" class="btn-google btn-google-outline px-8 py-4 text-base">Equipo Colaborador</a>
           </div>
         </MotionFadeIn>
       </div>
@@ -138,6 +139,19 @@ const authors = [
         </a>
       </MotionStaggerItem>
     </MotionStagger>
+  </section>
+
+  <!-- Interactive Simulator Section -->
+  <section class="max-w-6xl mx-auto px-6 py-24 md:py-32">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-black text-[#202124] tracking-tight mb-6">
+        Simulador Interactivo de <span class="text-[#1a73e8]">Trazado</span>
+      </h2>
+      <p class="text-[#5f6368] text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+        ¿Quieres ver cómo procesamos los datos? Interactúa con este simulador para entender el viaje de la información desde tu celular hasta nuestra base de datos espacial.
+      </p>
+    </div>
+    <CampusSimulator client:load />
   </section>
 
   <!-- Enhanced Collaborative Team Section -->
