@@ -11,4 +11,7 @@ export default defineConfig({
       applyBaseStyles: false,
     })
   ],
+  build: {
+    format: 'directory',
+  }
 });
