@@ -2,94 +2,147 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { MotionFadeIn, MotionStagger, MotionStaggerItem } from '../components/MotionFadeIn.tsx';
 
-const glossaryData = [
-  {
-    id: "db",
-    category: "Conceptos de Base de Datos (DER)",
-    color: "#1a73e8",
-    bg: "#e8f0fe",
-    terms: [
-      { name: "Entidad (Tabla)", desc: "Representación de un objeto del mundo real en el sistema. En U-Locate, Edificio, Espacio o Categoría son entidades que almacenan datos específicos." },
-      { name: "Llave Primaria (Primary Key)", desc: "El identificador único de cada registro (ej. Id_Edificio). Garantiza que no existan dos aulas o edificios duplicados en la base de datos." },
-      { name: "Llave Foránea (Foreign Key)", desc: "Un campo que vincula una tabla con otra. Por ejemplo, Id_Edificio dentro de la tabla Espacio permite saber a qué edificio pertenece cada salón." },
-      { name: "Relación de Cardinalidad", desc: "Define cuántos elementos de una tabla se relacionan con otra. El DER muestra una relación 1:N (Un edificio tiene muchos espacios)." }
-    ]
-  },
-  {
-    id: "nav",
-    category: "Conceptos de Localización y Navegación",
-    color: "#ea4335",
-    bg: "#fce8e6",
-    terms: [
-      { name: "Nodo de Navegación", desc: "Un punto virtual en el mapa (vértice) que representa una ubicación física o un punto de decisión (una esquina, una puerta o un ascensor) donde el usuario puede cambiar de dirección." },
-      { name: "Grafo de Ruta", desc: "El conjunto de todos los Nodos y sus Conexiones. Es la \"malla\" invisible que el sistema utiliza para calcular el camino más corto entre dos puntos." },
-      { name: "Georreferenciación", desc: "El uso de coordenadas (Latitud y Longitud) para asignar una ubicación espacial exacta a los edificios y nodos en un mapa digital." },
-      { name: "Wayfinding", desc: "El proceso de orientar a las personas en un entorno físico y facilitar el movimiento de un punto A a un punto B mediante señales visuales o digitales." }
-    ]
-  },
-  {
-    id: "dev",
-    category: "Conceptos de Desarrollo e Interfaz (Web)",
-    color: "#34a853",
-    bg: "#e6f4ea",
-    terms: [
-      { name: "Accesibilidad (Ruta)", desc: "Atributo que indica si un camino es apto para personas con movilidad reducida (ej. presencia de rampas en lugar de escaleras), dato guardado en Conexion_Ruta." },
-      { name: "Referencia Visual", desc: "Un punto de interés (POI) fácilmente identificable (ej. una estatua o un mural) que ayuda al usuario a confirmar que va por el camino correcto." },
-      { name: "Front-end Geográfico", desc: "La parte web que el estudiante ve, donde se renderizan los planos de la universidad y se dibujan las rutas calculadas." },
-      { name: "Capa de Datos (Data Layer)", desc: "La estructura lógica que extrae la información del DER (como el Nombre_Cat o el Icono_Mapa) para mostrarla sobre el mapa de la universidad." }
-    ]
-  }
+const allTerms = [
+  { name: "Accesibilidad", desc: "Atributo que indica si un camino es apto para personas con movilidad reducida (ej. rampas), dato fundamental en nuestra tabla de rutas." },
+  { name: "API", desc: "Application Programming Interface. El puente de comunicación que permite a la web consultar los datos de los edificios en tiempo real." },
+  { name: "Backend", desc: "El cerebro del sistema (Node.js) donde ocurren los cálculos de rutas complejos y la gestión de la lógica de negocio." },
+  { name: "Campus", desc: "El entorno físico de la UNET que ha sido digitalizado y descompuesto en entidades para nuestro sistema." },
+  { name: "Capa de Datos", desc: "Estructura lógica que extrae información del DER (como coordenadas o iconos) para mostrarla sobre el mapa." },
+  { name: "Categoría", desc: "Clasificación de los espacios (ej. Laboratorios, Cafetines) que facilita el filtrado y búsqueda para el estudiante." },
+  { name: "DCA", desc: "Desarrollo Conjunto de Aplicaciones. Metodología colaborativa usada en la Fase 1 para definir requerimientos con los usuarios." },
+  { name: "DER", desc: "Diagrama Entidad-Relación. El modelo lógico que define cómo se estructuran y conectan los datos de la UNET en la base de datos." },
+  { name: "DFD", desc: "Diagrama de Flujo de Datos. Herramienta visual que usamos para mapear cómo la información GPS recorre el sistema." },
+  { name: "Diccionario de Datos", desc: "Documento técnico que detalla el formato, longitud y propósito de cada campo en nuestras tablas SQL." },
+  { name: "Edificio", desc: "Entidad principal que agrupa espacios físicos y actúa como punto de referencia central en el mapa." },
+  { name: "Entidad", desc: "Representación en el sistema de un objeto real (como un salón o un bloque). Es el componente básico de nuestras tablas." },
+  { name: "Espacio", desc: "Cualquier unidad física dentro de un edificio (aula, baño, oficina) que posee una ubicación georreferenciada única." },
+  { name: "Front-end", desc: "La interfaz visual (React) con la que interactúa el estudiante para buscar destinos y ver los planos." },
+  { name: "Georreferenciación", desc: "Asignación de coordenadas geográficas exactas (Latitud/Longitud) a cada punto de interés del campus." },
+  { name: "GitHub", desc: "Plataforma de control de versiones donde Jose Garcia y su equipo gestionan el código fuente del proyecto." },
+  { name: "Grafo de Ruta", desc: "Red invisible de nodos y conexiones que el algoritmo recorre para encontrar el camino más corto entre dos puntos." },
+  { name: "HTTPS", desc: "Protocolo de transferencia seguro que garantiza que la ubicación del usuario se transmita de forma cifrada." },
+  { name: "Iteración", desc: "Ciclo de desarrollo en la metodología RAD donde se produce un entregable funcional y se recibe retroalimentación." },
+  { name: "JSON", desc: "Formato de intercambio de datos ligero utilizado para enviar las coordenadas de la ruta desde el servidor al mapa." },
+  { name: "Llave Foránea", desc: "Campo que vincula dos tablas (ej. Id_Edificio en la tabla Espacio), permitiendo la navegación jerárquica." },
+  { name: "Llave Primaria", desc: "Identificador único e irrepetible para cada registro en el sistema (ej. ID de un estudiante o de un aula)." },
+  { name: "Mapbox", desc: "Motor de mapas profesional utilizado en U-Locate para renderizar la cartografía personalizada de la UNET." },
+  { name: "Multimedia", desc: "Uso de múltiples medios (botones, mapas, texto, animaciones) para mejorar la comprensión de la información espacial." },
+  { name: "Nodo", desc: "Punto de decisión en el mapa (una esquina, una puerta) donde el sistema calcula que es posible cambiar de dirección." },
+  { name: "Normalización", desc: "Proceso de organizar los datos para evitar duplicidad y asegurar que la base de datos sea eficiente y veloz." },
+  { name: "PostGIS", desc: "Extensión espacial de la base de datos que permite realizar cálculos geográficos (como 'qué hay cerca de mí')." },
+  { name: "RAD", desc: "Desarrollo Rápido de Aplicaciones. Estrategia ágil que usamos para crear prototipos funcionales en poco tiempo." },
+  { name: "Relación 1:N", desc: "Tipo de conexión donde un elemento (Un Edificio) está vinculado a muchos elementos (Muchos Espacios)." },
+  { name: "UX", desc: "User Experience. El enfoque que aplicamos para que el blog y la app sean fáciles e intuitivos de usar por los estudiantes." },
+  { name: "Wayfinding", desc: "Proceso de orientación y navegación que ayuda a las personas a moverse con éxito por entornos complejos como la UNET." }
 ];
+
+// Group terms by first letter
+const groupedTerms = allTerms.reduce((acc, term) => {
+  const firstLetter = term.name.charAt(0).toUpperCase();
+  if (!acc[firstLetter]) acc[firstLetter] = [];
+  acc[firstLetter].push(term);
+  return acc;
+}, {} as Record<string, typeof allTerms>);
+
+const alphabet = Object.keys(groupedTerms).sort();
 ---
 
-<MainLayout title="Glosario del Proyecto | U-Locate">
+<MainLayout title="Glosario | Jose Garcia Blog">
   <article class="section-container prose-google max-w-5xl">
     <MotionFadeIn client:load direction="down" className="mb-16">
-      <span class="text-[#fbbc04] font-bold text-sm tracking-widest uppercase mb-4 block">Fase 3: La Capa de Control</span>
-      <h1 class="text-4xl md:text-5xl font-bold mb-6">Glosario: Sistema de Localización Universitaria</h1>
-      <p class="text-xl font-light leading-relaxed">
-        Para garantizar que el equipo de ingeniería y los usuarios hablen el mismo idioma, hemos definido los términos fundamentales que componen la arquitectura de U-Locate.
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#fff8e1] rounded-full mb-6">
+        <span class="w-2 h-2 bg-[#fbbc04] rounded-full animate-pulse"></span>
+        <span class="text-[#b08500] font-bold text-[10px] uppercase tracking-widest">Fase 3: La Capa de Control</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black text-[#202124] tracking-tight mb-8">
+        El Diccionario: <span class="text-[#fbbc04]">Eje del Proyecto</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[#5f6368] font-light leading-relaxed max-w-4xl">
+        Un error común en ingeniería es dejar la documentación para el final. En U-Locate, el **Diccionario de Proyecto** es la ley: si un término no está registrado, no existe.
       </p>
     </MotionFadeIn>
 
-    <div class="space-y-16">
-      {glossaryData.map((section) => (
-        <section>
-          <div class="flex items-center gap-4 mb-8">
-            <div class="w-2 h-8 rounded-full" style={`background-color: ${section.color}`}></div>
-            <h2 class="text-2xl font-bold m-0" style={`color: ${section.color}`}>{section.category}</h2>
+    <!-- Project Dictionary Strategy -->
+    <section class="mb-24 bg-[#f8f9fa] p-8 md:p-12 rounded-[2.5rem] border border-[#dadce0]">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-black text-[#202124] mb-6">Documentación en Tiempo Real</h2>
+          <p class="text-[#5f6368] leading-relaxed mb-6 font-medium">
+            Cada vez que creamos una entidad en el DER o un flujo en el DFD, lo registramos **inmediatamente**. Este enfoque elimina la ambigüedad y garantiza que el equipo siempre trabaje sobre la misma base técnica.
+          </p>
+          <ul class="space-y-4">
+            {[
+              { t: 'Definiciones de Datos', d: 'Nombre, tipo y longitud de cada campo.' },
+              { t: 'Estructuras Lógicas', d: 'Cómo se agrupan los datos en registros.' },
+              { t: 'Flujos y Procesos', d: 'El origen y destino de cada bit informativo.' }
+            ].map(item => (
+              <li class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 bg-[#fbbc04] rounded-full"></span>
+                <span class="text-sm font-bold text-[#202124]">{item.t}: <span class="font-medium text-[#5f6368]">{item.d}</span></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-3xl border border-[#dadce0] shadow-xl rotate-2">
+          <div class="space-y-3 font-mono text-[10px] text-slate-400 uppercase tracking-tighter">
+            <div class="p-3 bg-slate-50 border-b border-slate-100 text-[#fbbc04] font-black italic">Log_Diccionario_3.0</div>
+            <div class="p-3">ENTIDAD: EDIFICIO -> REGRISTRO_OK</div>
+            <div class="p-3">FLUJO: GPS_STREAM -> REGISTRO_OK</div>
+            <div class="p-3">ESTRUCTURA: RUTAS_VULNERABLES -> REGISTRO_OK</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alphabet Quick Access -->
+    <div class="flex flex-wrap gap-2 mb-20 p-4 bg-[#f8f9fa] rounded-2xl border border-[#dadce0] justify-center">
+      {alphabet.map(letter => (
+        <a 
+          href={`#letter-${letter}`} 
+          class="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-[#dadce0] text-[#202124] font-black hover:bg-[#fbbc04] hover:text-white hover:border-[#fbbc04] transition-all text-sm shadow-sm"
+        >
+          {letter}
+        </a>
+      ))}
+    </div>
+
+    <div class="space-y-24">
+      {alphabet.map(letter => (
+        <section id={`letter-${letter}`} class="relative">
+          <div class="flex items-center gap-6 mb-12">
+            <h2 class="text-6xl font-black text-[#fbbc04] opacity-20 m-0">{letter}</h2>
+            <div class="h-px grow bg-[#dadce0]"></div>
           </div>
 
-          <div class="grid gap-6">
-            <MotionStagger client:load className="grid md:grid-cols-2 gap-6">
-              {section.terms.map((term) => (
-                <MotionStaggerItem client:load>
-                  <div class="card-google p-8 h-full bg-white hover:border-[#dadce0] transition-all">
-                    <h3 class="text-lg font-bold text-[#202124] mb-3 flex items-center gap-2">
-                       <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${section.color}`}></span>
-                       {term.name}
-                    </h3>
-                    <p class="text-sm text-[#5f6368] leading-relaxed">
-                      {term.desc}
-                    </p>
-                  </div>
-                </MotionStaggerItem>
-              ))}
-            </MotionStagger>
-          </div>
+          <MotionStagger client:load className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {groupedTerms[letter].map((term) => (
+              <MotionStaggerItem client:load>
+                <div class="card-google p-8 h-full bg-white hover:shadow-xl hover:-translate-y-1 transition-all group border border-[#dadce0] rounded-3xl">
+                  <h3 class="text-base font-black text-[#202124] mb-4 flex items-center gap-3">
+                     <span class="w-1.5 h-1.5 rounded-full bg-[#fbbc04] group-hover:scale-150 transition-transform"></span>
+                     {term.name}
+                  </h3>
+                  <p class="text-[13px] text-[#5f6368] leading-relaxed font-medium">
+                    {term.desc}
+                  </p>
+                </div>
+              </MotionStaggerItem>
+            ))}
+          </MotionStagger>
         </section>
       ))}
     </div>
 
-    <!-- Control Utility -->
-    <div class="mt-24 bg-[#f8f9fa] p-10 rounded-3xl border border-[#dadce0] flex flex-col md:flex-row items-center gap-8 shadow-inner">
-      <div class="flex-shrink-0 w-16 h-16 bg-[#fbbc04] rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg">
-        📖
-      </div>
-      <div>
-        <h3 class="text-lg font-bold mb-2">Semántica de Ingeniería</h3>
-        <p class="text-sm text-[#5f6368] m-0">
-          Este glosario actúa como la base de nuestro **Diccionario de Proyecto**, asegurando que cada flujo de datos y proceso de navegación esté libre de ambigüedad durante la implementación RAD.
+    <!-- Final Info Card -->
+    <div class="mt-32 p-10 md:p-16 bg-[#202124] rounded-[2.5rem] md:rounded-[3.5rem] text-center relative overflow-hidden group shadow-2xl">
+      <div class="absolute inset-0 bg-[#fbbc04] opacity-0 group-hover:opacity-5 blur-3xl transition-all"></div>
+      <div class="relative z-10">
+        <div class="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-10 shadow-inner">
+          📖
+        </div>
+        <h3 class="text-3xl font-black text-white mb-6">Diccionario de Proyecto</h3>
+        <p class="text-lg text-white/60 font-light leading-relaxed max-w-2xl mx-auto">
+          Este glosario técnico es la base de nuestra **Sincronización Semántica**. Al estandarizar estos conceptos, eliminamos la ambigüedad en el desarrollo y garantizamos una implementación RAD fluida y profesional.
         </p>
       </div>
     </div>
