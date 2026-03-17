@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Blog de ingeniería del proyecto U-Locate." } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { name: 'Descripción', path: '/' },
+  { name: 'Investigación', path: '/fase-1' },
+  { name: 'Arquitectura', path: '/fase-2' },
+  { name: 'Diccionario', path: '/fase-3' },
+  { name: 'RAD', path: '/fase-4' },
+];
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<title>{title} | U-Locate Blog</title>
+	</head>
+	<body class="flex flex-col min-h-screen">
+		<nav class="border-b border-[#dadce0] bg-white sticky top-0 z-50">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16 items-center">
+					<div class="flex items-center gap-8">
+						<a href="/" class="flex items-center gap-2">
+							<span class="text-[#5f6368] font-medium text-xl">U-Locate</span>
+							<span class="text-[#1a73e8] font-semibold text-xl">Developers</span>
+						</a>
+						<div class="hidden md:flex items-center gap-1">
+							{navItems.map(item => (
+								<a 
+									href={item.path} 
+									class={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${currentPath === item.path ? 'bg-[#e8f0fe] text-[#1a73e8]' : 'text-[#5f6368] hover:bg-[#f1f3f4]'}`}
+								>
+									{item.name}
+								</a>
+							))}
+						</div>
+					</div>
+					<div class="flex items-center gap-4">
+						<button class="md:hidden p-2 rounded-full hover:bg-[#f1f3f4]">
+              <svg class="w-6 h-6 text-[#5f6368]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+		<main class="flex-grow">
+			<slot />
+		</main>
+
+		<footer class="bg-[#f8f9fa] border-t border-[#dadce0] py-12">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+					<div class="col-span-1 md:col-span-2">
+            <h3 class="text-[#202124] font-semibold mb-4 text-lg">Acerca de U-Locate</h3>
+            <p class="text-[#5f6368] text-sm leading-relaxed max-w-sm">
+              U-Locate es una iniciativa de ingeniería dedicada a resolver problemas de localización compleja en infraestructuras universitarias mediante modelización estructurada.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-[#202124] font-semibold mb-4 text-sm uppercase tracking-wider">Recursos</h4>
+            <ul class="space-y-2 text-sm text-[#5f6368]">
+              <li><a href="/fase-2" class="hover:text-[#1a73e8]">Modelado DER</a></li>
+              <li><a href="/fase-3" class="hover:text-[#1a73e8]">Glosario Técnico</a></li>
+              <li><a href="/fase-4" class="hover:text-[#1a73e8]">Metodología RAD</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-[#202124] font-semibold mb-4 text-sm uppercase tracking-wider">Equipo</h4>
+            <p class="text-xs text-[#5f6368]">Santiago Hernandez | Líder</p>
+            <p class="text-xs text-[#5f6368] mt-1">Ana Andrade | Coordinadora</p>
+            <p class="text-xs text-[#5f6368] mt-1">Jose Garcia | Arquitecto</p>
+          </div>
+				</div>
+				<div class="mt-12 pt-8 border-t border-[#dadce0] flex flex-col md:flex-row justify-between items-center gap-4">
+					<p class="text-xs text-[#5f6368]">&copy; 2026 U-Locate Project. Todos los derechos reservados.</p>
+          <div class="flex gap-4">
+            <span class="w-4 h-4 bg-[#4285f4] rounded-full"></span>
+            <span class="w-4 h-4 bg-[#ea4335] rounded-full"></span>
+            <span class="w-4 h-4 bg-[#fbbc05] rounded-full"></span>
+            <span class="w-4 h-4 bg-[#34a853] rounded-full"></span>
+          </div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

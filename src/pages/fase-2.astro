@@ -1,0 +1,160 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { MotionFadeIn, MotionStagger, MotionStaggerItem } from '../components/MotionFadeIn.tsx';
+---
+
+<MainLayout title="Arquitectura y Modelización | U-Locate">
+  <article class="section-container prose-google max-w-5xl">
+    <MotionFadeIn client:load direction="down" className="mb-20 text-center md:text-left">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#fce8e6] rounded-full mb-6 text-[#ea4335]">
+        <span class="w-1.5 h-1.5 bg-[#ea4335] rounded-full animate-bounce"></span>
+        <span class="text-[10px] font-black uppercase tracking-widest">Fase 2: Arquitectura del Sistema</span>
+      </div>
+      <h1 class="text-5xl md:text-6xl font-black text-[#202124] tracking-tight mb-8">
+        Modelando el Blueprint Técnico
+      </h1>
+      <p class="text-xl text-[#5f6368] font-light leading-relaxed max-w-3xl">
+        Transformamos los requerimientos en estructuras visuales. El modelado estructurado que garantiza que cada dato e interacción tenga un lugar lógico.
+      </p>
+    </MotionFadeIn>
+
+    <div class="space-y-32">
+      <!-- A. Modelado de Datos -->
+      <section>
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+           <div class="flex items-center gap-6">
+             <div class="w-16 h-16 bg-[#e8f0fe] rounded-3xl flex items-center justify-center text-[#1a73e8] font-black text-2xl shadow-xl shadow-blue-100 rotate-6">A</div>
+             <div>
+               <h2 class="text-3xl font-black text-[#202124] m-0">Modelado de Datos</h2>
+               <p class="text-sm text-[#5f6368] mt-1">Estructura lógicamente optimizada (DER)</p>
+             </div>
+           </div>
+           <div class="bg-blue-50 px-4 py-2 rounded-xl text-[10px] font-black text-blue-600 uppercase border border-blue-100 tracking-tighter">Normalización 3ra Forma Normal</div>
+        </div>
+        
+        <p class="text-lg mb-12 text-[#5f6368] font-light leading-relaxed">
+          Diseñamos un **Diagrama Entidad-Relación (DER)** robusto, enfocado en entidades fuertes como Edificios y Espacios, permitiendo búsquedas rápidas por Categorías e Iconografía personalizada.
+        </p>
+
+        <!-- Image Container -->
+        <div class="bg-[#f8f9fa] p-2 rounded-[3.5rem] border border-[#dadce0] relative group">
+          <div class="bg-white border border-[#dadce0] rounded-[3rem] p-12 overflow-hidden flex flex-col items-center shadow-inner hover:shadow-2xl transition-all duration-500">
+            <h4 class="text-[10px] font-black uppercase tracking-widest text-[#5f6368] mb-10 text-center flex items-center gap-4 opacity-40">
+              <span class="w-12 h-px bg-[#dadce0]"></span>
+              Diagrama Entidad-Relación de U-Locate
+              <span class="w-12 h-px bg-[#dadce0]"></span>
+            </h4>
+            
+            <div class="relative w-full max-w-3xl group-hover:scale-[1.02] transition-transform duration-700">
+              <div class="absolute inset-0 bg-[#4285f4] opacity-0 group-hover:opacity-5 blur-3xl transition-all"></div>
+              <img
+                src="/DER.png"
+                alt="Diagrama Entidad-Relación de U-Locate"
+                class="w-full h-auto opacity-95 transition-opacity"
+              />
+            </div>
+            
+            <p class="mt-12 text-xs text-[#5f6368] italic font-medium px-4 text-center max-w-lg border-t border-slate-100 pt-8">
+              "El modelo asegura que no exista redundancia espacial, optimizando la latitud/longitud para cálculos de geoposicionamiento en tiempo real."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- B. Modelado de Procesos con DFD explosiones -->
+      <section>
+        <div class="flex items-center gap-6 mb-16 text-[#ea4335]">
+           <div class="w-16 h-16 bg-[#fce8e6] rounded-3xl flex items-center justify-center font-black text-2xl shadow-xl shadow-red-100 -rotate-3">B</div>
+           <div>
+             <h2 class="text-3xl font-black text-[#202124] m-0">Modelado de Procesos</h2>
+             <p class="text-sm text-[#5f6368] mt-1 font-medium italic">Diagrama de Flujo de Datos (DFD)</p>
+           </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+           <div class="space-y-8">
+               <p class="text-lg text-[#5f6368] font-light leading-relaxed">
+                 Aplicamos la técnica de **explosión de procesos**. Cada diagrama es un nivel de zoom hacia la lógica de cálculo y transformación de la ubicación del usuario.
+               </p>
+               
+               <MotionStagger client:load className="space-y-6">
+                  {['Nivel 0: Contexto', 'Nivel 1: Nucleo', 'Nivel 2: Detalle Algorítmico'].map((level, i) => (
+                    <MotionStaggerItem client:load>
+                       <div class="flex gap-6 p-6 items-center bg-white border border-[#dadce0] rounded-2xl hover:border-red-400 group transition-all">
+                          <span class="text-2xl font-black text-red-50 opacity-10 group-hover:opacity-100 group-hover:text-red-500 transition-all">{i}</span>
+                          <h4 class="text-sm font-black text-[#202124] uppercase tracking-wider">{level}</h4>
+                       </div>
+                    </MotionStaggerItem>
+                  ))}
+               </MotionStagger>
+           </div>
+           
+           <div class="bg-[#202124] p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+              <div class="absolute -top-10 -right-10 w-40 h-40 bg-red-400 opacity-5 blur-3xl group-hover:opacity-10 transition-all"></div>
+              <h3 class="text-xl font-bold text-white mb-8 border-b border-white/10 pb-6">Explosión de Proceso 3.0</h3>
+              <p class="text-xs text-white/60 mb-10 leading-relaxed font-light">
+                El motor de rutas geográficas es el corazón del sistema, donde la señal GPS se limpia y se proyecta sobre nuestro grafo de navegación.
+              </p>
+              <div class="space-y-4 text-[10px] uppercase font-black tracking-widest text-[#eee]">
+                <div class="flex justify-between items-center py-2 border-b border-white/5">
+                   <span>Input: Geolocation Stream</span>
+                   <span class="text-red-400">-></span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-white/5">
+                   <span>Proc: Path Minimization</span>
+                   <span class="text-red-400">-></span>
+                </div>
+                <div class="flex justify-between items-center py-2">
+                   <span>Output: JSON Layout</span>
+                   <span class="text-red-400">FIN</span>
+                </div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      <!-- C. Modelado de Redes -->
+      <section>
+        <div class="flex items-center gap-6 mb-16 text-[#34a853]">
+           <div class="w-16 h-16 bg-[#e6f4ea] rounded-3xl flex items-center justify-center font-black text-2xl shadow-xl shadow-green-100 rotate-2">C</div>
+           <div>
+             <h2 class="text-3xl font-black text-[#202124] m-0">Arquitectura de Red</h2>
+             <p class="text-sm text-[#5f6368] mt-1 uppercase tracking-widest font-black opacity-40">Mapeo de Conexión y Redes</p>
+           </div>
+        </div>
+
+        <div class="bg-white border-2 border-dashed border-[#dadce0] rounded-[3.5rem] p-16 flex flex-col md:flex-row gap-16 items-center">
+           <div class="flex-1 space-y-8">
+              <h4 class="text-2xl font-black text-[#202124] leading-tight">Distribución de Carga y Localización</h4>
+              <p class="text-[#5f6368] font-light leading-relaxed">
+                Separamos el procesamiento geográfico en tres nodos físicos para garantizar que no existan cuellos de botella durante las horas pico en la UNET.
+              </p>
+              <ul class="space-y-6">
+                {[
+                  { label: 'CLIENTE', detail: 'Renderizado React + Mapbox Layers via HTTPS.', color: 'blue' },
+                  { label: 'SERVER', detail: 'APIs Node.js en contenedores independientes.', color: 'red' },
+                  { label: 'DATA', detail: 'Servidor PostgreSQL redundante con PostGIS.', color: 'green' }
+                ].map(item => (
+                  <li class="flex items-start gap-4">
+                    <span class={`w-1 h-8 rounded-full mt-1 bg-green-500`}></span>
+                    <div>
+                      <strong class="text-[#202124] text-sm block mb-1">[{item.label}]</strong>
+                      <p class="text-xs text-[#5f6368] font-medium">{item.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+           </div>
+           
+           <div class="w-full md:w-1/3 p-12 bg-[#f8f9fa] border border-[#dadce0] rounded-3xl shadow-lg flex flex-col gap-6">
+              <div class="p-6 bg-white border border-blue-200 rounded-2xl text-center text-[10px] font-black uppercase text-blue-600 shadow-sm">Front-end (User)</div>
+              <div class="flex justify-center"><span class="text-slate-300">▼</span></div>
+              <div class="p-6 bg-[#202124] rounded-2xl text-center text-[10px] font-black uppercase text-white shadow-xl">Cloud API Node.js</div>
+              <div class="flex justify-center"><span class="text-slate-300">▼</span></div>
+              <div class="p-6 bg-white border border-green-200 rounded-2xl text-center text-[10px] font-black uppercase text-green-600 shadow-sm">DB (Spatial Engine)</div>
+           </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</MainLayout>

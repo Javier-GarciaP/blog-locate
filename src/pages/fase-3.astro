@@ -1,0 +1,97 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { MotionFadeIn, MotionStagger, MotionStaggerItem } from '../components/MotionFadeIn.tsx';
+
+const glossaryData = [
+  {
+    id: "db",
+    category: "Conceptos de Base de Datos (DER)",
+    color: "#1a73e8",
+    bg: "#e8f0fe",
+    terms: [
+      { name: "Entidad (Tabla)", desc: "Representación de un objeto del mundo real en el sistema. En U-Locate, Edificio, Espacio o Categoría son entidades que almacenan datos específicos." },
+      { name: "Llave Primaria (Primary Key)", desc: "El identificador único de cada registro (ej. Id_Edificio). Garantiza que no existan dos aulas o edificios duplicados en la base de datos." },
+      { name: "Llave Foránea (Foreign Key)", desc: "Un campo que vincula una tabla con otra. Por ejemplo, Id_Edificio dentro de la tabla Espacio permite saber a qué edificio pertenece cada salón." },
+      { name: "Relación de Cardinalidad", desc: "Define cuántos elementos de una tabla se relacionan con otra. El DER muestra una relación 1:N (Un edificio tiene muchos espacios)." }
+    ]
+  },
+  {
+    id: "nav",
+    category: "Conceptos de Localización y Navegación",
+    color: "#ea4335",
+    bg: "#fce8e6",
+    terms: [
+      { name: "Nodo de Navegación", desc: "Un punto virtual en el mapa (vértice) que representa una ubicación física o un punto de decisión (una esquina, una puerta o un ascensor) donde el usuario puede cambiar de dirección." },
+      { name: "Grafo de Ruta", desc: "El conjunto de todos los Nodos y sus Conexiones. Es la \"malla\" invisible que el sistema utiliza para calcular el camino más corto entre dos puntos." },
+      { name: "Georreferenciación", desc: "El uso de coordenadas (Latitud y Longitud) para asignar una ubicación espacial exacta a los edificios y nodos en un mapa digital." },
+      { name: "Wayfinding", desc: "El proceso de orientar a las personas en un entorno físico y facilitar el movimiento de un punto A a un punto B mediante señales visuales o digitales." }
+    ]
+  },
+  {
+    id: "dev",
+    category: "Conceptos de Desarrollo e Interfaz (Web)",
+    color: "#34a853",
+    bg: "#e6f4ea",
+    terms: [
+      { name: "Accesibilidad (Ruta)", desc: "Atributo que indica si un camino es apto para personas con movilidad reducida (ej. presencia de rampas en lugar de escaleras), dato guardado en Conexion_Ruta." },
+      { name: "Referencia Visual", desc: "Un punto de interés (POI) fácilmente identificable (ej. una estatua o un mural) que ayuda al usuario a confirmar que va por el camino correcto." },
+      { name: "Front-end Geográfico", desc: "La parte web que el estudiante ve, donde se renderizan los planos de la universidad y se dibujan las rutas calculadas." },
+      { name: "Capa de Datos (Data Layer)", desc: "La estructura lógica que extrae la información del DER (como el Nombre_Cat o el Icono_Mapa) para mostrarla sobre el mapa de la universidad." }
+    ]
+  }
+];
+---
+
+<MainLayout title="Glosario del Proyecto | U-Locate">
+  <article class="section-container prose-google max-w-5xl">
+    <MotionFadeIn client:load direction="down" className="mb-16">
+      <span class="text-[#fbbc04] font-bold text-sm tracking-widest uppercase mb-4 block">Fase 3: La Capa de Control</span>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Glosario: Sistema de Localización Universitaria</h1>
+      <p class="text-xl font-light leading-relaxed">
+        Para garantizar que el equipo de ingeniería y los usuarios hablen el mismo idioma, hemos definido los términos fundamentales que componen la arquitectura de U-Locate.
+      </p>
+    </MotionFadeIn>
+
+    <div class="space-y-16">
+      {glossaryData.map((section) => (
+        <section>
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-2 h-8 rounded-full" style={`background-color: ${section.color}`}></div>
+            <h2 class="text-2xl font-bold m-0" style={`color: ${section.color}`}>{section.category}</h2>
+          </div>
+
+          <div class="grid gap-6">
+            <MotionStagger client:load className="grid md:grid-cols-2 gap-6">
+              {section.terms.map((term) => (
+                <MotionStaggerItem client:load>
+                  <div class="card-google p-8 h-full bg-white hover:border-[#dadce0] transition-all">
+                    <h3 class="text-lg font-bold text-[#202124] mb-3 flex items-center gap-2">
+                       <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${section.color}`}></span>
+                       {term.name}
+                    </h3>
+                    <p class="text-sm text-[#5f6368] leading-relaxed">
+                      {term.desc}
+                    </p>
+                  </div>
+                </MotionStaggerItem>
+              ))}
+            </MotionStagger>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- Control Utility -->
+    <div class="mt-24 bg-[#f8f9fa] p-10 rounded-3xl border border-[#dadce0] flex flex-col md:flex-row items-center gap-8 shadow-inner">
+      <div class="flex-shrink-0 w-16 h-16 bg-[#fbbc04] rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg">
+        📖
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-2">Semántica de Ingeniería</h3>
+        <p class="text-sm text-[#5f6368] m-0">
+          Este glosario actúa como la base de nuestro **Diccionario de Proyecto**, asegurando que cada flujo de datos y proceso de navegación esté libre de ambigüedad durante la implementación RAD.
+        </p>
+      </div>
+    </div>
+  </article>
+</MainLayout>

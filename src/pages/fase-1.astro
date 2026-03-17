@@ -1,0 +1,128 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { MotionFadeIn, MotionStagger, MotionStaggerItem } from '../components/MotionFadeIn.tsx';
+
+const investigationHechos = [
+  { 
+    title: 'Entrevistas Técnicas', 
+    desc: 'Conversamos con vigilantes y secretarias, primeros puntos de consulta del campus.', 
+    icon: '🗣️',
+    color: '#4285f4' 
+  },
+  { 
+    title: 'Experiencia Propia', 
+    desc: 'Como estudiantes de Ingeniería, experimentamos diariamente la desorientación en edificios anexos.', 
+    icon: '🎓',
+    color: '#ea4335' 
+  },
+  { 
+    title: 'Observación Directa', 
+    desc: 'Cronometramos recorridos críticos para identificar cuellos de botella en la navegación.', 
+    icon: '⏱️',
+    color: '#34a853' 
+  }
+];
+
+const dcaSteps = [
+  { id: '01', title: 'Pautas de Desarrollo', detail: 'Estándares de codificación y protocolos de comunicación.' },
+  { id: '02', title: 'Responsabilidades', detail: 'Roles específicos (Analista, Arquitecto, Líder) sin solapamientos.' },
+  { id: '03', title: 'Validación de Requisitos', detail: 'Sesiones de feedback con stakeholders administrativos.' }
+];
+---
+
+<MainLayout title="Fase 1: Investigación | U-Locate">
+  <article class="section-container prose-google max-w-5xl">
+    <MotionFadeIn client:load direction="down" className="mb-20 text-center md:text-left">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#e8f0fe] rounded-full mb-6">
+        <span class="w-2 h-2 bg-[#1a73e8] rounded-full animate-pulse"></span>
+        <span class="text-[#1a73e8] font-bold text-[10px] uppercase tracking-widest">Fase 1: Investigación de Hechos</span>
+      </div>
+      <h1 class="text-5xl md:text-6xl font-black text-[#202124] tracking-tight mb-8">
+        Entendiendo el Problema Real
+      </h1>
+      <p class="text-xl text-[#5f6368] font-light leading-relaxed max-w-3xl">
+        Antes del código, está la comprensión. Aplicamos el Desarrollo Conjunto de Aplicaciones (DCA) para trazar una ruta clara basada en hechos, no en suposiciones.
+      </p>
+    </MotionFadeIn>
+
+    <div class="grid lg:grid-cols-3 gap-16 mb-32">
+      <!-- Left Column: DCA -->
+      <div class="lg:col-span-2">
+        <section class="mb-20">
+          <h2 class="text-3xl font-bold mb-10 flex items-center gap-4 text-[#202124]">
+            <span class="text-[#1a73e8] opacity-20 text-5xl italic font-black">#</span>
+            Aplicación del DCA
+          </h2>
+          <p class="text-lg mb-10 text-[#5f6368] font-light">
+            Bajo el liderazgo de Santiago Hernandez, el grupo estableció pautas rigurosas para que cada integrante conociera su responsabilidad, optimizando la definición de requisitos funcionales.
+          </p>
+          
+          <div class="space-y-6">
+            {dcaSteps.map(step => (
+              <div class="flex gap-6 p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl group hover:bg-white hover:shadow-xl transition-all duration-300">
+                <span class="text-3xl font-black text-[#dadce0] group-hover:text-[#1a73e8] transition-colors">{step.id}</span>
+                <div>
+                  <h4 class="font-bold text-[#202124] mb-1">{step.title}</h4>
+                  <p class="text-sm text-[#5f6368]">{step.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Investigation Section -->
+        <section>
+          <h2 class="text-3xl font-bold mb-10 text-[#202124]">La Realidad del Campus</h2>
+          <MotionStagger client:load className="grid md:grid-cols-3 gap-6">
+            {investigationHechos.map(item => (
+              <MotionStaggerItem client:load>
+                <div class="card-google p-8 h-full flex flex-col items-center text-center group hover:-translate-y-2 transition-all">
+                  <div class="text-4xl mb-6 grayscale group-hover:grayscale-0 transition-all">{item.icon}</div>
+                  <h4 class="font-black text-sm text-[#202124] uppercase tracking-wider mb-4" style={`color: ${item.color}`}>{item.title}</h4>
+                  <p class="text-xs text-[#5f6368] leading-relaxed font-medium">
+                    {item.desc}
+                  </p>
+                </div>
+              </MotionStaggerItem>
+            ))}
+          </MotionStagger>
+        </section>
+      </div>
+
+      <!-- Sidebar: Requirements -->
+      <aside class="lg:col-span-1">
+        <div class="sticky top-28 space-y-8">
+          <div class="bg-[#202124] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden group">
+            <!-- Decorative light -->
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all"></div>
+            
+            <h3 class="text-xl font-bold mb-8">Informe de Requerimientos</h3>
+            <div class="space-y-8">
+              <div class="border-l-2 border-[#1a73e8] pl-6 py-1">
+                <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1 text-blue-400">Impacto Crítico</p>
+                <h4 class="text-sm font-bold">Gestión de Espacios</h4>
+                <p class="text-xs text-white/60 mt-1">Configuración dinámica de laboratorios y aulas.</p>
+              </div>
+              <div class="border-l-2 border-[#ea4335] pl-6 py-1">
+                <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1 text-red-400">Funcionalidad</p>
+                <h4 class="text-sm font-bold">Localización en Tiempo Real</h4>
+                <p class="text-xs text-white/60 mt-1">Sincronización via GPS y mapeo dinámico.</p>
+              </div>
+              <div class="border-l-2 border-[#34a853] pl-6 py-1">
+                <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1 text-green-400">Escalabilidad</p>
+                <h4 class="text-sm font-bold">Acceso Multi-dispositivo</h4>
+                <p class="text-xs text-white/60 mt-1">Optimización para web y dispositivos móviles UNET.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-[#f8f9fa] border border-[#dadce0] rounded-3xl p-8">
+             <p class="text-xs font-medium text-[#5f6368] italic italic text-center">
+               "No supongas. Investiga. El éxito de un sistema de información reside en la veracidad de su entrada."
+             </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+</MainLayout>
