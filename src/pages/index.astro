@@ -32,27 +32,27 @@ const authors = [
 <MainLayout title="U-Locate | Blog de Ingeniería UNET">
   <!-- Hero Section -->
   <section class="bg-[#f8f9fa] border-b border-[#dadce0] overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative text-center md:text-left">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 md:py-32 relative text-center md:text-left">
       <div class="max-w-3xl">
         <MotionFadeIn client:load direction="down">
           <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
-            <span class="px-3 py-1 bg-[#e8f0fe] text-[#1a73e8] text-xs font-bold rounded-full uppercase tracking-widest shadow-sm">Proyecto Final UNET</span>
-            <span class="text-[#5f6368] text-xs font-medium">Sistemas de Información I & Multimedia</span>
+            <span class="px-3 py-1 bg-[#e8f0fe] text-[#1a73e8] text-[10px] md:text-xs font-bold rounded-full uppercase tracking-widest shadow-sm">Proyecto Final UNET</span>
+            <span class="text-[#5f6368] text-[10px] md:text-xs font-medium">Sistemas de Información I & Multimedia</span>
           </div>
-          <h1 class="text-5xl md:text-7xl font-bold text-[#202124] tracking-tight mb-8">
+          <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-[#202124] tracking-tight mb-8 leading-tight">
             U-Locate: Navegando el Campus Inteligente
           </h1>
-          <p class="text-xl text-[#5f6368] mb-12 leading-relaxed font-light max-w-2xl mx-auto md:mx-0">
+          <p class="text-lg md:text-xl text-[#5f6368] mb-10 md:mb-12 leading-relaxed font-light max-w-2xl mx-auto md:mx-0">
             Un blog dedicado a documentar el proceso de ingeniería, modelado y desarrollo rápido (RAD) de nuestra solución de localización para la comunidad de la Universidad Nacional Experimental del Táchira.
           </p>
-          <div class="flex flex-wrap justify-center md:justify-start gap-4">
-            <a href="/fase-1" class="btn-google btn-google-primary px-8 py-3 text-base">Explorar Fases</a>
-            <a href="#equipo" class="btn-google btn-google-outline px-8 py-3 text-base">Ver Colaboradores</a>
+          <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+            <a href="/fase-1" class="btn-google btn-google-primary px-8 py-4 text-base">Explorar Fases</a>
+            <a href="#equipo" class="btn-google btn-google-outline px-8 py-4 text-base">Ver Colaboradores</a>
           </div>
         </MotionFadeIn>
       </div>
       <!-- Decorative UNET-inspired circle -->
-      <div class="absolute -right-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-5">
+      <div class="absolute -right-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-5 pointer-events-none">
         <svg width="600" height="600" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
           <path fill="#1a73e8" d="M40,-65.4C51.2,-58.5,59.3,-46.3,66.1,-33.5C72.9,-20.7,78.3,-7.4,77.5,5.6C76.8,18.6,69.9,31.3,60.2,41.4C50.5,51.5,38.1,59,24.8,64.2C11.5,69.5,-2.7,72.4,-16.9,70.5C-31.1,68.5,-45.3,61.7,-56.3,51.1C-67.3,40.4,-75.1,25.9,-77.9,10.6C-80.7,-4.8,-78.6,-20.9,-71.4,-34.5C-64.2,-48.1,-52,-59.1,-38.6,-64.8C-25.2,-70.5,-10.6,-70.9,2.6,-74.9C15.8,-78.9,28.8,-72.3,40,-65.4Z" transform="translate(100 100)" />
         </svg>
@@ -61,8 +61,8 @@ const authors = [
   </section>
 
   <!-- Featured Posts / Phases -->
-  <section id="fases" class="section-container">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+  <section id="fases" class="section-container pt-20 pb-20">
+    <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6 text-center md:text-left">
       <div>
         <h2 class="text-3xl font-bold text-[#202124]">Ciclo de Vida de Software</h2>
         <p class="text-[#5f6368] mt-2">Seguimiento exhaustivo de las 4 fases de ingeniería de software.</p>
@@ -72,18 +72,18 @@ const authors = [
       </a>
     </div>
 
-    <MotionStagger client:load className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Cards (Fase 1-4) remain same but with enhanced design if needed -->
+    <MotionStagger client:load className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      <!-- Fase 1 Card -->
       <MotionStaggerItem client:load>
-        <a href="/fase-1" class="card-google group block h-full">
-          <div class="h-48 bg-[#e8f0fe] flex items-center justify-center group-hover:bg-[#d2e3fc] transition-all relative">
-            <span class="text-5xl group-hover:scale-110 transition-transform">🕵️‍♂️</span>
+        <a href="/fase-1" class="card-google group block h-full overflow-hidden">
+          <div class="h-40 md:h-48 bg-[#e8f0fe] flex items-center justify-center group-hover:bg-[#d2e3fc] transition-all relative">
+            <span class="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🕵️‍♂️</span>
             <span class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-black text-[#1a73e8] shadow-sm">FASE 01</span>
           </div>
-          <div class="p-8">
-            <span class="text-[#1a73e8] text-xs font-bold uppercase tracking-widest mb-2 block">Capa de Negocio</span>
-            <h3 class="text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#1a73e8] transition-colors">Levantamiento de Hechos</h3>
-            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2">
+          <div class="p-6 md:p-8">
+            <span class="text-[#1a73e8] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 block">Capa de Negocio</span>
+            <h3 class="text-xl md:text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#1a73e8] transition-colors">Levantamiento de Hechos</h3>
+            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2 italic">
               Investigación basada en la experiencia real de estudiantes y observación directa del campus.
             </p>
           </div>
@@ -91,15 +91,15 @@ const authors = [
       </MotionStaggerItem>
 
       <MotionStaggerItem client:load>
-        <a href="/fase-2" class="card-google group block h-full">
-          <div class="h-48 bg-[#fce8e6] flex items-center justify-center group-hover:bg-[#fbd5d1] transition-all relative">
-            <span class="text-5xl group-hover:scale-110 transition-transform">🗺️</span>
+        <a href="/fase-2" class="card-google group block h-full overflow-hidden">
+          <div class="h-40 md:h-48 bg-[#fce8e6] flex items-center justify-center group-hover:bg-[#fbd5d1] transition-all relative">
+            <span class="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🗺️</span>
             <span class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-black text-[#ea4335] shadow-sm">FASE 02</span>
           </div>
-          <div class="p-8">
-            <span class="text-[#ea4335] text-xs font-bold uppercase tracking-widest mb-2 block">Capa Técnica</span>
-            <h3 class="text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#ea4335] transition-colors">Modelado Estructurado</h3>
-            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2">
+          <div class="p-6 md:p-8">
+            <span class="text-[#ea4335] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 block">Capa Técnica</span>
+            <h3 class="text-xl md:text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#ea4335] transition-colors">Modelado Estructurado</h3>
+            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2 italic">
               Sustento lógico mediante Diagramas Entidad-Relación y Diagramas de Flujo de Datos.
             </p>
           </div>
@@ -107,15 +107,15 @@ const authors = [
       </MotionStaggerItem>
 
       <MotionStaggerItem client:load>
-        <a href="/fase-3" class="card-google group block h-full">
-          <div class="h-48 bg-[#fef7e0] flex items-center justify-center group-hover:bg-[#feefc3] transition-all relative">
-            <span class="text-5xl group-hover:scale-110 transition-transform">📖</span>
+        <a href="/fase-3" class="card-google group block h-full overflow-hidden">
+          <div class="h-40 md:h-48 bg-[#fef7e0] flex items-center justify-center group-hover:bg-[#feefc3] transition-all relative">
+            <span class="text-4xl md:text-5xl group-hover:scale-110 transition-transform">📖</span>
             <span class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-black text-[#fbbc04] shadow-sm">FASE 03</span>
           </div>
-          <div class="p-8">
-            <span class="text-[#fbbc04] text-xs font-bold uppercase tracking-widest mb-2 block">Capa de Control</span>
-            <h3 class="text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#e6af00] transition-colors">Glosario de Proyecto</h3>
-            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2">
+          <div class="p-6 md:p-8">
+            <span class="text-[#fbbc04] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 block">Capa de Control</span>
+            <h3 class="text-xl md:text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#e6af00] transition-colors">Glosario de Proyecto</h3>
+            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2 italic">
               Estandarización semántica para garantizar la integridad de los datos en el sistema.
             </p>
           </div>
@@ -123,15 +123,15 @@ const authors = [
       </MotionStaggerItem>
 
       <MotionStaggerItem client:load>
-        <a href="/fase-4" class="card-google group block h-full">
-          <div class="h-48 bg-[#e6f4ea] flex items-center justify-center group-hover:bg-[#ceead6] transition-all relative">
-            <span class="text-5xl group-hover:scale-110 transition-transform">⚡</span>
+        <a href="/fase-4" class="card-google group block h-full overflow-hidden">
+          <div class="h-40 md:h-48 bg-[#e6f4ea] flex items-center justify-center group-hover:bg-[#ceead6] transition-all relative">
+            <span class="text-4xl md:text-5xl group-hover:scale-110 transition-transform">⚡</span>
             <span class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-black text-[#34a853] shadow-sm">FASE 04</span>
           </div>
-          <div class="p-8">
-            <span class="text-[#34a853] text-xs font-bold uppercase tracking-widest mb-2 block">Iteración</span>
-            <h3 class="text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#34a853] transition-colors">Metodología RAD</h3>
-            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2">
+          <div class="p-6 md:p-8">
+            <span class="text-[#34a853] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 block">Iteración</span>
+            <h3 class="text-xl md:text-2xl font-bold text-[#202124] mb-3 group-hover:text-[#34a853] transition-colors">Metodología RAD</h3>
+            <p class="text-[#5f6368] text-sm leading-relaxed line-clamp-2 italic">
               Desarrollo rápido de aplicaciones mediante ciclos iterativos y prototipado evolutivo.
             </p>
           </div>
@@ -141,36 +141,36 @@ const authors = [
   </section>
 
   <!-- Enhanced Collaborative Team Section -->
-  <section id="equipo" class="bg-[#f8f9fa] py-32 border-t border-[#dadce0]">
+  <section id="equipo" class="bg-[#f8f9fa] py-20 md:py-32 border-t border-[#dadce0]">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-[#202124] mb-4">Equipo de Ingeniería</h2>
-        <p class="text-[#5f6368] text-lg max-w-2xl mx-auto font-light">
+      <div class="text-center mb-16 md:mb-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#202124] mb-4">Equipo de Ingeniería</h2>
+        <p class="text-[#5f6368] text-base md:text-lg max-w-2xl mx-auto font-light">
           El equipo detrás de U-Locate, compuesto por estudiantes apasionados por la tecnología y la optimización de procesos en la UNET.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10">
         {authors.map(author => (
           <div class="card-google bg-white p-1 flex flex-col group h-full">
-             <div class="h-2 bg-gradient-to-r from-transparent via-[#dadce0] to-transparent w-full opacity-10"></div>
-             <div class="p-10 flex flex-col flex-grow items-center text-center">
+             <div class="h-2 bg-gradient-to-r from-transparent via-[#dadce0] to-transparent w-full opacity-10 font-bold"></div>
+             <div class="p-8 md:p-10 flex flex-col flex-grow items-center text-center">
                 <div 
-                  class="w-24 h-24 rounded-3xl flex items-center justify-center text-white text-3xl font-black mb-8 shadow-xl transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300"
+                  class="w-20 h-20 md:w-24 md:h-24 rounded-3xl flex items-center justify-center text-white text-2xl md:text-3xl font-black mb-8 shadow-xl transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 pointer-events-none"
                   style={`background-color: ${author.color}`}
                 >
                   {author.avatar}
                 </div>
-                <h3 class="text-2xl font-bold text-[#202124] mb-2">{author.name} {author.name === 'Jose Garcia' ? '(Tí)' : ''}</h3>
-                <p class="text-[#1a73e8] font-bold text-xs uppercase tracking-widest mb-6">{author.role}</p>
+                <h3 class="text-xl md:text-2xl font-bold text-[#202124] mb-2">{author.name} {author.name === 'Jose Garcia' ? '(Tú)' : ''}</h3>
+                <p class="text-[#1a73e8] font-bold text-[10px] md:text-xs uppercase tracking-widest mb-6">{author.role}</p>
                 <div class="w-12 h-0.5 bg-[#f1f3f4] mb-8"></div>
-                <p class="text-[#5f6368] text-sm leading-relaxed mb-4">
-                  {author.bio}
+                <p class="text-[#5f6368] text-sm leading-relaxed mb-4 italic">
+                  "{author.bio}"
                 </p>
                 <!-- Badge for Autor -->
                 {author.badge && (
-                  <div class="mt-auto pt-4">
-                    <span class="px-4 py-1.5 bg-[#e6f4ea] text-[#34a853] text-[10px] font-black rounded-full border border-[#ceead6]">
+                  <div class="mt-auto pt-6 w-full">
+                    <span class="px-3 py-1 bg-[#e6f4ea] text-[#34a853] text-[9px] md:text-[10px] font-black rounded-full border border-[#ceead6] block md:inline-block">
                       {author.badge}
                     </span>
                   </div>
@@ -183,15 +183,15 @@ const authors = [
   </section>
 
   <!-- Author Personal Detail (Extra Punch) -->
-  <section class="bg-white py-24 text-center">
+  <section class="bg-white py-20 md:py-24 text-center border-t border-[#f1f3f4]">
     <div class="max-w-4xl mx-auto px-6">
-      <div class="relative inline-block mb-10">
-        <div class="absolute -inset-4 bg-gradient-to-r from-[#4285f4] to-[#34a853] rounded-full blur-xl opacity-20 animate-pulse"></div>
-        <p class="relative text-[#202124] font-bold text-xl italic leading-relaxed">
+      <div class="relative inline-block mb-8 md:mb-10">
+        <div class="absolute -inset-4 bg-gradient-to-r from-[#4285f4] to-[#34a853] rounded-full blur-xl opacity-10 animate-pulse"></div>
+        <p class="relative text-[#202124] font-bold text-lg md:text-xl italic leading-relaxed px-4">
           "A mis 20 años, U-Locate representa la fusión perfecta entre la ingeniería de sistemas y el diseño multimedia."
         </p>
       </div>
-      <p class="text-[#5f6368] text-sm md:text-base font-light">
+      <p class="text-[#5f6368] text-[11px] md:text-sm font-medium uppercase tracking-[0.2em]">
         Jose Garcia — Estudiante de 6to Semestre | UNET
       </p>
     </div>
@@ -199,7 +199,7 @@ const authors = [
 </MainLayout>
 
 <style>
-  .truncate-2-lines {
+  .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
